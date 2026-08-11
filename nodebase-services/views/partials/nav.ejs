@@ -1,0 +1,27 @@
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo-link">
+      <img src="/images/logo.png" alt="NodeBaseServices">
+      <span>NodeBaseServices</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/tos">Terms</a>
+      <% if (user) { %>
+        <a href="/dashboard">Order</a>
+        <% if (isAdmin) { %>
+          <a href="/admin">Admin</a>
+        <% } %>
+        <div class="user-chip">
+          <% if (user.avatar) { %>
+            <img src="https://cdn.discordapp.com/avatars/<%= user.discord_id %>/<%= user.avatar %>.png?size=64" alt="">
+          <% } %>
+          <span class="desktop-only"><%= user.username %></span>
+        </div>
+        <a href="/logout" class="btn btn-outline btn-sm">Logout</a>
+      <% } else { %>
+        <a href="/auth/discord" class="btn btn-primary btn-sm">Sign in with Discord</a>
+      <% } %>
+    </div>
+  </div>
+</nav>

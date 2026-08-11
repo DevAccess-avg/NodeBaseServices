@@ -1,0 +1,57 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<section class="section fade-in" style="padding-top: 3rem;">
+  <h2 class="section-title text-center">Order a Custom Bot</h2>
+  <p class="text-center text-muted mb-2" style="max-width:480px;margin:0 auto 2rem;">
+    Select your package and bot type. After confirming you will receive a unique code — save it securely.
+  </p>
+
+  <div class="form-card">
+    <form id="order-form">
+      <div class="form-group">
+        <label for="service_type">Service Package</label>
+        <select id="service_type" name="service_type" required>
+          <option value="basic">Basic Bot</option>
+          <option value="advanced">Advanced Bot</option>
+          <option value="fivem">FiveM / ERLC Bot</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="bot_type">Bot Type</label>
+        <select id="bot_type" name="bot_type" required>
+          <option value="">Select bot type...</option>
+        </select>
+      </div>
+
+      <div class="form-group hidden" id="custom-group">
+        <label for="custom_details">Custom Requirements (max 2000 characters)</label>
+        <textarea id="custom_details" name="custom_details" maxlength="2000" placeholder="Describe exactly what features, commands, integrations, and behavior you need..."></textarea>
+        <div class="char-count" id="char-count">0 / 2000</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;margin-top:0.5rem;">
+        Confirm & Generate Code
+      </button>
+    </form>
+
+    <div id="result-box" class="hidden">
+      <div class="code-box">
+        <p style="font-weight:500;">Your Order Code</p>
+        <div class="code" id="code-display"></div>
+        <button type="button" class="btn btn-outline btn-sm" id="copy-btn">Copy Code</button>
+        <p class="code-warning">
+          ⚠️ Copy this code and save it somewhere safe. You will need it as your order reference. 
+          This code is unique to you.
+        </p>
+        <p class="text-muted mt-2" style="font-size:0.8rem;">
+          We will process your request. You only receive the source files — we do not host your bot.
+        </p>
+        <a href="/dashboard" class="btn btn-outline btn-sm mt-2">Place Another Order</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

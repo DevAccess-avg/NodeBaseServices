@@ -1,0 +1,123 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<section class="section fade-in" style="padding-top: 2.5rem;">
+  <h1 class="section-title">Admin Panel</h1>
+  <p class="text-muted mb-2">Only accessible by authorized Discord ID.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="orders-tab" onclick="switchTab('orders-tab')">Orders</button>
+    <button class="tab-btn" data-tab="users-tab" onclick="switchTab('users-tab')">Users</button>
+  </div>
+
+  <!-- Orders Tab -->
+  <div id="orders-tab" class="tab-content active">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>User</th>
+            <th>Service</th>
+            <th>Bot Type</th>
+            <th>Custom</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (orders.length === 0) { %>
+            <tr><td colspan="8" class="text-center text-muted">No orders yet</td></tr>
+          <% } %>
+          <% orders.forEach(o => { %>
+            <tr>
+              <td><code style="font-size:0.8rem;"><%= o.code %></code></td>
+              <td>
+                <span title="<%= o.user_id %>"><%= o.username || o.user_id %></span>
+              </td>
+              <td><%= o.service_type %></td>
+              <td><%= o.bot_type %></td>
+              <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="<%= o.custom_details || '' %>">
+                <%= o.custom_details ? o.custom_details.substring(0, 40) + (o.custom_details.length > 40 ? '…' : '') : '—' %>
+              </td>
+              <td>
+                <span class="badge badge-<%= o.status === 'pending' ? 'pending' : o.status === 'in_progress' ? 'progress' : o.status === 'completed' ? 'completed' : 'cancelled' %>">
+                  <%= o.status %>
+                </span>
+              </td>
+              <td style="font-size:0.8rem;"><%= o.created_at %></td>
+              <td>
+                <select onchange="updateOrderStatus(<%= o.id %>, this.value)" style="padding:0.25rem;font-size:0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:4px;">
+                  <option value="pending" <%= o.status==='pending'?'selected':'' %>>pending</option>
+                  <option value="in_progress" <%= o.status==='in_progress'?'selected':'' %>>in_progress</option>
+                  <option value="completed" <%= o.status==='completed'?'selected':'' %>>completed</option>
+                  <option value="cancelled" <%= o.status==='cancelled'?'selected':'' %>>cancelled</option>
+                </select>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Users Tab -->
+  <div id="users-tab" class="tab-content">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Discord ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Joined</th>
+            <th>Last Login</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users.length === 0) { %>
+            <tr><td colspan="7" class="text-center text-muted">No users yet</td></tr>
+          <% } %>
+          <% users.forEach(u => { %>
+            <tr>
+              <td><code style="font-size:0.8rem;"><%= u.discord_id %></code></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <% if (u.avatar) { %>
+                    <img src="https://cdn.discordapp.com/avatars/<%= u.discord_id %>/<%= u.avatar %>.png?size=32" alt="" style="width:24px;height:24px;border-radius:50%;">
+                  <% } %>
+                  <%= u.username %>
+                </div>
+              </td>
+              <td style="font-size:0.8rem;"><%= u.email || '—' %></td>
+              <td>
+                <% if (u.suspended) { %>
+                  <span class="badge badge-suspended">Suspended</span>
+                <% } else { %>
+                  <span class="badge badge-active">Active</span>
+                <% } %>
+              </td>
+              <td style="font-size:0.8rem;"><%= u.created_at %></td>
+              <td style="font-size:0.8rem;"><%= u.last_login %></td>
+              <td>
+                <% if (u.discord_id !== adminId) { %>
+                  <button class="btn btn-sm <%= u.suspended ? 'btn-outline' : 'btn-danger' %>" 
+                          onclick="toggleSuspend('<%= u.discord_id %>', <%= u.suspended === 1 %>)">
+                    <%= u.suspended ? 'Unsuspend' : 'Suspend' %>
+                  </button>
+                <% } else { %>
+                  <span class="text-muted" style="font-size:0.8rem;">Admin</span>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,52 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<section class="hero fade-in">
+  <img src="/images/logo.png" alt="NodeBaseServices Logo" class="hero-logo">
+  <h1>NodeBaseServices</h1>
+  <p>Premium custom Discord bots & FiveM / ERLC solutions. You receive the files — we don't host them. Clean code, delivered fast.</p>
+  <% if (user) { %>
+    <a href="/dashboard" class="btn btn-primary">Order a Bot</a>
+  <% } else { %>
+    <a href="/auth/discord" class="btn btn-primary">Sign in with Discord to Order</a>
+  <% } %>
+</section>
+
+<section class="section" id="services">
+  <h2 class="section-title text-center">What We Offer</h2>
+  <div class="grid-3">
+    <div class="card fade-in-up">
+      <h3>Basic Bot</h3>
+      <p>Solid foundation bots for moderation, utility, fun, economy, tickets and more. Perfect for growing communities.</p>
+      <p class="text-muted" style="font-size:0.8rem;">Choose from multiple ready types</p>
+    </div>
+    <div class="card fade-in-up" style="animation-delay:0.1s">
+      <h3>Advanced Bot</h3>
+      <p>Everything in Basic plus music, leveling, and full Custom options. Describe exactly what you need.</p>
+      <p class="text-muted" style="font-size:0.8rem;">Includes Custom (2000 char brief)</p>
+    </div>
+    <div class="card fade-in-up" style="animation-delay:0.2s">
+      <h3>FiveM / ERLC Bot</h3>
+      <p>Server status, whitelist, player lookup, Discord sync, queue systems and ERLC specific tools.</p>
+      <p class="text-muted" style="font-size:0.8rem;">Built for roleplay servers</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card" style="max-width:700px;margin:0 auto;text-align:center;">
+    <h3>How it works</h3>
+    <p class="text-muted mt-2">
+      1. Sign in with Discord<br>
+      2. Choose your service & bot type<br>
+      3. Receive a unique 16-digit order code<br>
+      4. Keep the code safe — it's your order reference<br>
+      5. We deliver the files. No hosting provided.
+    </p>
+    <p class="mt-2" style="font-size:0.85rem;color:var(--warning);">
+      Important: No refunds. Support for fixes only within 3 days of receiving your files.
+    </p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

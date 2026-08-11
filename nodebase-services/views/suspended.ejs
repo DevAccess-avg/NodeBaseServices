@@ -1,0 +1,23 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<section class="section fade-in" style="padding-top: 5rem; text-align: center; max-width: 520px;">
+  <div class="card">
+    <h1 style="font-size:1.6rem;margin-bottom:1rem;">Account Suspended</h1>
+    <p class="text-muted">
+      Your account has been suspended and you cannot access ordering or other features.
+    </p>
+    <p class="mt-2">
+      Please make a ticket in the main Discord server for assistance.
+    </p>
+    <a href="<%= discordInvite %>" target="_blank" rel="noopener" class="btn btn-primary mt-3">
+      Join Discord & Open Ticket
+    </a>
+    <p class="text-muted mt-2" style="font-size:0.85rem;">
+      Server invite: <%= discordInvite %>
+    </p>
+    <a href="/logout" class="btn btn-outline btn-sm mt-2">Logout</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

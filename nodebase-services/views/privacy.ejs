@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<section class="section fade-in" style="max-width:720px;padding-top:3rem;">
+  <h1 class="section-title">Privacy Policy</h1>
+  <p class="text-muted mb-2">Last updated: August 2026</p>
+
+  <div class="card" style="line-height:1.7;">
+    <h3>1. Information We Collect</h3>
+    <p class="text-muted mt-1">When you sign in with Discord we receive your Discord user ID, username, discriminator/avatar hash, and email (if the scope provides it). We also store order details you submit and generated order codes.</p>
+
+    <h3 class="mt-3">2. How We Use It</h3>
+    <p class="text-muted mt-1">We use this information to authenticate you, process orders, provide support within the stated window, prevent abuse, and operate the admin panel. We do not sell your data.</p>
+
+    <h3 class="mt-3">3. Data Storage</h3>
+    <p class="text-muted mt-1">Data is stored in our database. Access tokens are stored only as needed for session management. You can request deletion by contacting us via Discord.</p>
+
+    <h3 class="mt-3">4. Third Parties</h3>
+    <p class="text-muted mt-1">Authentication is handled via Discord OAuth2. We do not share your data with other third parties except as required to operate the service or by law.</p>
+
+    <h3 class="mt-3">5. Cookies / Sessions</h3>
+    <p class="text-muted mt-1">We use session cookies to keep you logged in. These are essential for the site to function.</p>
+
+    <h3 class="mt-3">6. Contact</h3>
+    <p class="text-muted mt-1">Questions: open a ticket in our Discord — <a href="<%= discordInvite %>" target="_blank" rel="noopener" style="color:var(--text);"><%= discordInvite %></a></p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
